@@ -5,7 +5,10 @@ data = json.load(open(dictPath))
 
 def translate(word):
     word = word.lower()
-    if word in data:
+    capWord = word.capitalize()
+    if capWord in data:
+        return data[capWord]
+    elif word in data:
         return data[word]
     elif len(get_close_matches(word, data.keys())) > 0:
         yn = input("Did you mean %s instead? Enter Y/N: " % get_close_matches(word, data.keys())[0])
